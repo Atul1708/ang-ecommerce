@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="wrapper">
+  <div class="container">
+    <button routerLink="/home" class="back"><i class="fa-solid fa-arrow-left"></i></button>
+    <div class="outer">
+      <div class="content animated fadeInLeft">
+        <span class="bg animated fadeInDown">{{ productDetails.brand }}</span>
+        <h1>{{ productDetails.title }}</h1>
+        <p>{{ productDetails.description }}</p>
+        <!-- <div class="card flex justify-content-center">
+        <p-rating [(ngModel)]="productDetails.rating"  [cancel]="false"></p-rating>
+    </div> -->
+        <div class="button">
+          <a href="#">{{ productDetails.price | currency }}</a
+          ><a class="cart-btn" (click)="addToCart(productDetails, selectedQuantity)"
+            ><i class="cart-icon ion-bag"></i>ADD TO CART</a
+          >
+        </div>
+      </div>
+      <div class="img">
+        <img
+          [src]="productDetails.images[2]"
+          width="300px"
+          class="animated fadeInRight"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>

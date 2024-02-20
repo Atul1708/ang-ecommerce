@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="container">
+    <div class="img">
+        <img src="../../../assets/hero1.jpg" loading="lazy" alt="">
+    </div>
+    <div class="content">
+        <h3>Shop Smarter, Live Stylishly: Your Gateway to Effortless Elegance!</h3>
+        <h1>Elevate Your Wardrobe with Trendsetting Fashion</h1>
+    </div>
+
+</div>
+<div class="banner">
+    <div class="images">
+        <img src="../../../assets/banne.jpg" alt="">
+        <!-- <img src="../../../assets/bg2.jpg" alt="">
+        <img src="../../../assets/bg3.jpg" alt=""> -->
+    </div>
+</div>
+<app-product-card [title]="'Feature Product'" [productData]="'products'"></app-product-card>
+<app-product-card [title]="'All Product'" [productData]="'allProducts'"></app-product-card>
+<app-footer></app-footer>
+<router-outlet></router-outlet>
+<router-outlet name="newPageOutlet"></router-outlet>

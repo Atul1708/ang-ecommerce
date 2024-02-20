@@ -1,0 +1,172 @@
+<ng-container *ngIf="cartItems.length">
+  <div class="container">
+    <div class="card-table">
+      <div class="card-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Sr.no</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Product Category</th>
+              <th>Brand</th>
+              <th>Discount</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let product of cartItems; let i = index"
+              class="border-bottom"
+            >
+              <td style="width: 130px">{{ i + 1 }}</td>
+              <td class="title">{{ product.title }}</td>
+              <td style="width: 130px">
+                <img
+                  class="table-img"
+                  [src]="product.images[2]"
+                  style="width: 120px"
+                  [alt]="product.title"
+                  loading="lazy"
+                />
+              </td>
+              <td style="width: 130px">{{ product.category }}</td>
+              <td style="width: 130px">{{ product.brand }}</td>
+              <td style="width: 130px">{{ product.discountPercentage }}%</td>
+              <td style="width: 130px">{{ product.quantity }}</td>
+              <td style="width: 130px">{{ product.price | currency }}</td>
+              <td style="width: 130px">
+                <button (click)="removeProduct(product)" class="removeBtn">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td
+                style="
+                  font-size: 0.95rem;
+                  border-top: 2px solid #212121;
+                  padding: 5px;
+                "
+              >
+                <strong>Total :{{ averageDiscount }}%</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="final-step" *ngIf="cartItems">
+    <div class="totalPrice">
+      <div class="discount">
+        <h4>Discount Amount:</h4>
+        <div class="inpt">
+          <input
+            [(ngModel)]="discountAmout"
+            name="discount"
+            type="number"
+            placeholder="your discount here.."
+          />
+          <button (click)="calculateDiscount()">
+            Add <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="list">
+        <ul>
+          <li>
+            <strong>Sub-Total: {{ totalCartPrice | currency }}</strong>
+          </li>
+          <li><strong>Shipping cost: $4</strong></li>
+          <li><strong>GST: $3</strong></li>
+          <li>
+            <strong>Total: {{ totalCartPrice + 7 | currency }}</strong>
+          </li>
+          <li
+            style="
+              list-style: none;
+              margin-top: 10px;
+              border-top: 2px solid #212121;
+            "
+            *ngIf="finalAmount > 0"
+          >
+            <strong>{{ finalAmount | currency }}</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="check-out" (click)="[checkOut(),showConfirmation()]">
+      Check Out <i class="fa-regular fa-credit-card"></i>
+    </button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="cartItems.length === 0">
+  <div class="empty-container">
+    <div class="card">
+      <h2 class="card-title">My cart</h2>
+      <div class="center">
+        <img
+          src="https://rukminim2.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+          alt=""
+          loading="lazy"
+        />
+        <h5>Your cart is empty!</h5>
+        <h6>Add items to your cart</h6>
+        <button class="learn-more" routerLink="/home">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Shop Now</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container>
+  <div class="card-model fade-in" *ngIf="isConfirmationVisible && finalAmount">
+    <div class="header">
+      <div class="image">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 7L9.00004 18L3.99994 13"
+              stroke="#000000"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <div class="content">
+        <span class="title">Order confirmed</span>
+        <p class="message">
+          Thank you for your purchase. you package will be delivered within 5-7
+          days of your purchase
+        </p>
+      </div>
+      <div class="actions">
+        <button class="history" type="button" (click)="hideConfirmation()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="overlay fade-in"
+    *ngIf="isConfirmationVisible && finalAmount"
+    (click)="hideConfirmation()"
+  ></div>
+</ng-container>

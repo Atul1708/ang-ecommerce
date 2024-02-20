@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Mukta:200,300,regular,500,600,700,800);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Mukta", sans-serif;
+}
+
+:root {
+    --black: #e8e8e8;
+    --blue: rgb(176, 98, 255);
+    --dark-blue: #0D47A1;
+    --light-blue: #3EC8F7;
+    --light-color: #fefefe;
+}
+
+body {
+    background-color: var(--black);
+}

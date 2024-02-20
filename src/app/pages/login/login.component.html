@@ -1,0 +1,44 @@
+<div class="login-page">
+  <div class="form">
+    <img src="../../../assets/Mobile login-bro.png" alt="" loading="lazy" />
+    <form
+      class="login-form"
+      #userLogin="ngForm"
+      (ngSubmit)="onUserLogin(userLogin)"
+    >
+      <input
+        type="text"
+        placeholder="username"
+        name="username"
+        [(ngModel)]="username"
+        #nameInput="ngModel"
+        required
+      />
+      <!-- <p class="errorMsg" *ngIf="nameInput.touched">
+        Opps! not valid email
+      </p> -->
+      <input
+        class="input"
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="password"
+        name="password"
+        [(ngModel)]="password"
+        #passInput="ngModel"
+        required
+      />
+      <div class="icons" (click)="togglePassword()">
+        <i
+          [ngClass]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
+        ></i>
+      </div>
+      <!-- <p class="errorMsg" *ngIf="passInput.touched">
+        Enter valid password
+      </p> -->
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+
+<!--     username: 'kminchelle',
+    password: '0lelplR', -->
